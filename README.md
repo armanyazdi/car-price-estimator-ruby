@@ -2,4 +2,4 @@
 
 An Iranian used car price estimator written in Ruby.
 
-It collects prices from [bama.ir](https://bama.ir/car)
+It collects data from [bama.ir](https://bama.ir/car)
