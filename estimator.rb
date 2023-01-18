@@ -70,4 +70,4 @@ uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=
 doc = Nokogiri.HTML5(uri)
 price = doc.css('span.bama-ad__price')[0].text.strip.gsub(/[\s,]/, '').to_i
 
-puts "\nPrice: #{format(price)} - #{format((price + price * 0.02).to_i)} Toman on #{today}"
+puts "\nPrice: #{format(price)} - #{format(Integer(price + price * 0.02))} Toman on #{today}"
