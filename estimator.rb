@@ -5,6 +5,12 @@ require 'open-uri'
 require 'nokogiri'
 require 'date'
 
+# This method formats prices with commas.
+def format(num)
+  number = num.to_s.chars.to_a.reverse.each_slice(3)
+  number.map(&:join).join(',').reverse
+end
+
 # This method converts Gregorian to Jalali date.
 def jalali(gy, gm, gd)
   g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
@@ -28,33 +34,40 @@ def jalali(gy, gm, gd)
   [jy, jm, jd]
 end
 
-# This method formats numbers with commas.
-def format(num)
-  number = num.to_s.chars.to_a.reverse.each_slice(3)
-  number.map(&:join).join(',').reverse
-end
-
 print 'Car model: '
 model = gets.chomp    # Example: 'Peugeot 207' or 'renault tondar90'
-model[' '] = '-'
-
+model[' '] = '-' if model.include? ' '
+puts '-------------------------'
+puts "1) Manual\n2) Automatic"
 print 'Car gearbox: '
 gearbox = gets.chomp  # Example : 'manual' or 'automatic'
-
+gearbox = 'manual' if (gearbox == 1) || (gearbox == 'manual')
+gearbox = 'automatic' if (gearbox == 2) || (gearbox == 'automatic')
+puts '-------------------------'
 print 'Car build year: '
 year = gets.chomp     # Example: 1400
-
+puts '-------------------------'
 print 'Car mileage (km): '
 mileage = gets.chomp  # Example : 10000
-
+puts '-------------------------'
 print 'Car color: '
 color = gets.chomp    # Example : white
+puts '-------------------------'
+puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Refinement"
+print 'Paint status: '
+paint = gets.chomp
+paint = 'no_paint' if paint == 0
+paint = 'one_paint' if paint == 1
+paint = 'two_paint' if paint == 2
+paint = 'multi_paint' if paint == 3
+paint = 'refinement' if paint == 4
+puts '-------------------------'
+puts 'Estimating Price ...'
 
 date = jalali(Date.today.year, Date.today.month, Date.today.day)
 today = "#{date[0]}/#{date[1]}/#{date[2]}"
-
-uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=1&seller=1&transmission=#{gearbox}&color=#{color}&sort=7")
+uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=1&seller=1&transmission=#{gearbox}&color=#{color}&status=#{paint}&sort=7")
 doc = Nokogiri.HTML5(uri)
 price = doc.css('span.bama-ad__price')[0].text.strip.gsub(/[\s,]/, '').to_i
 
-puts "Price: #{format(price)} - #{format((price + price * 0.02).to_i)} Toman on #{today}"
+puts "\nPrice: #{format(price)} - #{format((price + price * 0.02).to_i)} Toman on #{today}"
