@@ -34,7 +34,7 @@ def jalali(gy, gm, gd)
   [jy, jm, jd]
 end
 
-# Example: 'Peugeot 207' or 'Renault tondar90'
+# Example: 'Peugeot 207' or 'renault tondar90'
 print 'Car model: '
 model = gets.chomp.downcase
 model[' '] = '-' if model.include? ' '
