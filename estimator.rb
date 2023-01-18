@@ -5,6 +5,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'date'
 
+# This method converts Gregorian to Jalali date.
 def jalali(gy, gm, gd)
   g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
   gy2 = gm > 2 ? gy + 1 : gy
@@ -27,26 +28,27 @@ def jalali(gy, gm, gd)
   [jy, jm, jd]
 end
 
+# This method formats numbers with commas.
 def format(num)
   number = num.to_s.chars.to_a.reverse.each_slice(3)
   number.map(&:join).join(',').reverse
 end
 
 print 'Car model: '
-model = gets.chomp    # example: 'Peugeot 207' or 'renault tondar90'
+model = gets.chomp    # Example: 'Peugeot 207' or 'renault tondar90'
 model[' '] = '-'
 
 print 'Car gearbox: '
-gearbox = gets.chomp  # example : 'manual' or 'automatic'
+gearbox = gets.chomp  # Example : 'manual' or 'automatic'
 
 print 'Car build year: '
-year = gets.chomp     # example: 1400
+year = gets.chomp     # Example: 1400
 
 print 'Car mileage (km): '
-mileage = gets.chomp  # example : 10000
+mileage = gets.chomp  # Example : 10000
 
 print 'Car color: '
-color = gets.chomp    # example : white
+color = gets.chomp    # Example : white
 
 date = jalali(Date.today.year, Date.today.month, Date.today.day)
 today = "#{date[0]}/#{date[1]}/#{date[2]}"
