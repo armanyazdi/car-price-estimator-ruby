@@ -14,10 +14,10 @@ end
 # This method converts Gregorian to Jalali date.
 def jalali(gy, gm, gd)
   g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
-  (gm > 2) ? gy2 = gy + 1 : gy2 = gy
-  days = 355666 + (365 * gy) + Integer((gy2 + 3) / 4) - Integer((gy2 + 99) / 100) + Integer((gy2 + 399) / 400) + gd + g_d_m[gm - 1]
-  jy = -1595 + (33 * Integer(days / 12053))
-  days %= 12053
+  gy2 = gm > 2 ? gy + 1 : gy
+  days = 355_666 + (365 * gy) + Integer((gy2 + 3) / 4) - Integer((gy2 + 99) / 100) + Integer((gy2 + 399) / 400) + gd + g_d_m[gm - 1]
+  jy = -1595 + (33 * Integer(days / 12_053))
+  days %= 12_053
   jy += 4 * Integer(days / 1461)
   days %= 1461
   if days > 365
