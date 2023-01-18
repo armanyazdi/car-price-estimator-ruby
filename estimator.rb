@@ -14,10 +14,10 @@ end
 # This method converts Gregorian to Jalali date.
 def jalali(gy, gm, gd)
   g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
-  gy2 = gm > 2 ? gy + 1 : gy
-  days = 355_666 + (365 * gy) + Integer((gy2 + 3) / 4) - Integer((gy2 + 99) / 100) + Integer((gy2 + 399) / 400) + gd + g_d_m[gm - 1]
-  jy = -1595 + (33 * Integer(days / 12_053))
-  days %= 12_053
+  (gm > 2) ? gy2 = gy + 1 : gy2 = gy
+  days = 355666 + (365 * gy) + Integer((gy2 + 3) / 4) - Integer((gy2 + 99) / 100) + Integer((gy2 + 399) / 400) + gd + g_d_m[gm - 1]
+  jy = -1595 + (33 * Integer(days / 12053))
+  days %= 12053
   jy += 4 * Integer(days / 1461)
   days %= 1461
   if days > 365
@@ -90,6 +90,6 @@ date = jalali(Date.today.year, Date.today.month, Date.today.day)
 today = "#{date[0]}/#{date[1]}/#{date[2]}"
 uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=1&seller=1&transmission=#{gearbox}&color=#{color}&status=#{status}#{replace}&sort=7")
 doc = Nokogiri.HTML5(uri)
-price = doc.css('span.bama-ad__price')[0].text.strip.gsub(/[\s,]/, '').to_i
+price = doc.css('span.bama-ad__price')[0].text.strip.gsub!(/[\s,]/, '').to_i
 
 puts "\nPrice: #{format(price)} - #{format(Integer(price + price * 0.02))} Toman on #{today}"
