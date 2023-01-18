@@ -6,7 +6,7 @@ require 'nokogiri'
 require 'date'
 
 # This method formats prices with commas.
-def format(num)
+def format_num(num)
   number = num.to_s.chars.to_a.reverse.each_slice(3)
   number.map(&:join).join(',').reverse
 end
@@ -92,4 +92,4 @@ uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=
 doc = Nokogiri.HTML5(uri)
 price = doc.css('span.bama-ad__price')[0].text.strip.gsub!(/[\s,]/, '').to_i
 
-puts "\nPrice: #{format(price)} - #{format(Integer(price + price * 0.02))} Toman on #{today}"
+puts "\nPrice: #{format_num(price)} - #{format_num(Integer(price + price * 0.02))} Toman on #{today}"
