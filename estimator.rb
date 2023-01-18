@@ -63,21 +63,22 @@ print 'Car color: '
 color = gets.chomp.downcase
 puts '-------------------------'
 
-puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Refinement"
-print 'Paint status: '
-paint = gets.chomp
-paint = 'no_paint' if paint == 0
-paint = 'one_paint' if paint == 1
-paint = 'two_paint' if paint == 2
-paint = 'multi_paint' if paint == 3
-paint = 'refinement' if paint == 4
+puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Around Paint\n5) Refinement"
+print 'Car body status: '
+status = gets.chomp
+status = 'no_paint' if status == 0
+status = 'one_paint' if status == 1
+status = 'two_paint' if status == 2
+status = 'multi_paint' if status == 3
+status = 'around_paint' if status == 4
+status = 'refinement' if status == 5
 puts '-------------------------'
 
 puts 'Estimating Price ...'
 
 date = jalali(Date.today.year, Date.today.month, Date.today.day)
 today = "#{date[0]}/#{date[1]}/#{date[2]}"
-uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=1&seller=1&transmission=#{gearbox}&color=#{color}&status=#{paint}&sort=7")
+uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=1&seller=1&transmission=#{gearbox}&color=#{color}&status=#{status}&sort=7")
 doc = Nokogiri.HTML5(uri)
 price = doc.css('span.bama-ad__price')[0].text.strip.gsub(/[\s,]/, '').to_i
 
