@@ -34,24 +34,33 @@ def jalali(gy, gm, gd)
   [jy, jm, jd]
 end
 
+# Example: 'Peugeot 207' or 'Renault tondar90'
 print 'Car model: '
-model = gets.chomp    # Example: 'Peugeot 207' or 'renault tondar90'
+model = gets.chomp.downcase
 model[' '] = '-' if model.include? ' '
 puts '-------------------------'
+
+# Example : 'manual' or 'automatic'
 puts "1) Manual\n2) Automatic"
 print 'Car gearbox: '
-gearbox = gets.chomp  # Example : 'manual' or 'automatic'
+gearbox = gets.chomp.downcase
 gearbox = 'manual' if (gearbox == 1) || (gearbox == 'manual')
 gearbox = 'automatic' if (gearbox == 2) || (gearbox == 'automatic')
 puts '-------------------------'
+
+# Example: 1400
 print 'Car build year: '
-year = gets.chomp     # Example: 1400
+year = gets.chomp
 puts '-------------------------'
+
+# Example : 10000
 print 'Car mileage (km): '
-mileage = gets.chomp  # Example : 10000
+mileage = gets.chomp
 puts '-------------------------'
+
+# Example : 'white' or 'black'
 print 'Car color: '
-color = gets.chomp    # Example : white
+color = gets.chomp.downcase
 puts '-------------------------'
 puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Refinement"
 print 'Paint status: '
@@ -62,6 +71,7 @@ paint = 'two_paint' if paint == 2
 paint = 'multi_paint' if paint == 3
 paint = 'refinement' if paint == 4
 puts '-------------------------'
+
 puts 'Estimating Price ...'
 
 date = jalali(Date.today.year, Date.today.month, Date.today.day)
