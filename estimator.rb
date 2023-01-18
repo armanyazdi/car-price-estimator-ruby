@@ -36,14 +36,14 @@ end
 
 # Example: 'Peugeot 207' or 'renault tondar90'
 print 'Car model: '
-model = gets.chomp.downcase
-model[' '] = '-' if model.include? ' '
+model = gets.chomp.downcase.strip
+model.gsub!(/\s/, '-') if model.include? ' '
 puts '-------------------------'
 
 # Example : 'manual' or 'automatic'
 puts "1) Manual\n2) Automatic"
 print 'Car gearbox: '
-gearbox = gets.chomp.downcase
+gearbox = gets.chomp.downcase.strip
 gearbox = 'manual' if (gearbox == 1) || (gearbox == 'manual')
 gearbox = 'automatic' if (gearbox == 2) || (gearbox == 'automatic')
 puts '-------------------------'
@@ -60,7 +60,7 @@ puts '-------------------------'
 
 # Example : 'white' or 'black'
 print 'Car color: '
-color = gets.chomp.downcase
+color = gets.chomp.downcase.strip
 puts '-------------------------'
 
 puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Around Paint\n5) Full Paint\n6) Refinement"
