@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'open-uri'
 require 'rubygems'
+require 'open-uri'
 require 'nokogiri'
 require 'date'
 
