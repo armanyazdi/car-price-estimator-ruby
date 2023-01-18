@@ -62,6 +62,7 @@ puts '-------------------------'
 print 'Car color: '
 color = gets.chomp.downcase
 puts '-------------------------'
+
 puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Refinement"
 print 'Paint status: '
 paint = gets.chomp
