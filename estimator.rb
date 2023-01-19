@@ -34,37 +34,42 @@ def jalali(gy, gm, gd)
   [jy, jm, jd]
 end
 
+# This method generates separator lines.
+def line(num)
+  puts '-' * num
+end
+
 # Example: 'Peugeot 207' or 'renault tondar90'
-print 'Car model: '
+print 'Car Model: '
 model = gets.chomp.strip.downcase
 model.gsub!(/\s/, '-') if model.include? ' '
-puts '-------------------------'
+line(25)
 
 # Example : 'manual' or 'automatic'
 puts "1) Manual\n2) Automatic"
-print 'Car gearbox: '
+print 'Car Gearbox: '
 gearbox = gets.chomp.strip.downcase
 gearbox = 'manual' if (gearbox == 1) || (gearbox == 'manual')
 gearbox = 'automatic' if (gearbox == 2) || (gearbox == 'automatic')
-puts '-------------------------'
+line(25)
 
 # Example: 1400
-print 'Car build year: '
+print 'Car Build Year: '
 year = gets.chomp
-puts '-------------------------'
+line(25)
 
 # Example : 10000
-print 'Car mileage (km): '
+print 'Car Mileage (km): '
 mileage = gets.chomp
-puts '-------------------------'
+line(25)
 
 # Example : 'white' or 'black'
-print 'Car color: '
+print 'Car Color: '
 color = gets.chomp.strip.downcase
-puts '-------------------------'
+line(25)
 
 puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Around Paint\n5) Full Paint\n6) Refinement"
-print 'Car body status: '
+print 'Car Body Status: '
 status = gets.chomp
 status = 'no_paint' if status == 0
 status = 'one_paint' if status == 1
@@ -73,16 +78,16 @@ status = 'multi_paint' if status == 3
 status = 'around_paint' if status == 4
 status = 'full_paint' if status == 5
 status = 'refinement' if status == 6
-puts '-------------------------'
+line(25)
 
 puts "0) No Replacements\n1) Fender Replaced\n2) Hood Replaced\n3) Door Replaced"
-print 'Car body replacements: '
+print 'Car Body Replacements: '
 replace = gets.chomp
 replace = '' if status == 0
 replace = ',fender_replace' if replace == 1
 replace = ',hood_replace' if replace == 2
 replace = ',door_replace' if replace == 3
-puts '-------------------------'
+line(25)
 
 puts 'Estimating Price ...'
 
