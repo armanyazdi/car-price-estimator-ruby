@@ -6,7 +6,7 @@ require 'nokogiri'
 require 'date'
 
 # This method formats prices with commas.
-def format_num(num)
+def fmt(num)
   number = num.to_s.chars.to_a.reverse.each_slice(3)
   number.map(&:join).join(',').reverse
 end
@@ -34,7 +34,7 @@ def jalali(gy, gm, gd)
   [jy, jm, jd]
 end
 
-# This method generates separator lines.
+# This method generates divider lines.
 def line(num)
   puts '-' * num
 end
@@ -97,4 +97,4 @@ uri = URI.open("https://bama.ir/car/#{model}-y#{year}?mileage=#{mileage}&priced=
 doc = Nokogiri.HTML5(uri)
 price = doc.css('span.bama-ad__price')[0].text.strip.gsub!(/[\s,]/, '').to_i
 
-puts "\nPrice: #{format_num(price)} - #{format_num(Integer(price + price * 0.02))} Toman on #{today}"
+puts "\nPrice: #{fmt(price)} - #{fmt(Integer(price + price * 0.02))} Toman on #{today}"
