@@ -1,4 +1,4 @@
-# car-price-estimator-ruby
+# Car Price Estimator
 
 An Iranian used car price estimator written in Ruby 💎
 
