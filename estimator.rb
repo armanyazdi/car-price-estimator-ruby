@@ -68,7 +68,13 @@ print 'Car Color: '
 color = gets.chomp.strip.downcase
 line(25)
 
-puts "0) No Paint\n1) One Paint\n2) Two Paint\n3) Multi Paint\n4) Around Paint\n5) Full Paint\n6) Refinement"
+puts '0) No Paint'
+puts '1) One Paint'
+puts '2) Two Paint'
+puts '3) Multi Paint'
+puts '4) Around Paint'
+puts '5) Full Paint'
+puts '6) Refinement'
 print 'Car Body Status: '
 status = gets.chomp
 status = 'no_paint' if status == 0
@@ -80,7 +86,10 @@ status = 'full_paint' if status == 5
 status = 'refinement' if status == 6
 line(25)
 
-puts "0) No Replacements\n1) Fender Replaced\n2) Hood Replaced\n3) Door Replaced"
+puts '0) No Replacements'
+puts '1) Fender Replaced'
+puts '2) Hood Replaced'
+puts '3) Door Replaced'
 print 'Car Body Replacements: '
 replace = gets.chomp
 replace = '' if status == 0
