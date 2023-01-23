@@ -11,7 +11,7 @@ def fmt(num)
   number.map(&:join).join(',').reverse
 end
 
-# This method converts Gregorian to Jalali date.
+# This method converts Gregorian date to Jalali.
 def jalali(gy, gm, gd)
   g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
   gy2 = gm > 2 ? gy + 1 : gy
